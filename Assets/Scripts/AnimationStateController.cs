@@ -14,10 +14,12 @@ public class AnimationStateController : MonoBehaviour
     {
         bool isRunning = animator.GetBool("isRunning");
         bool isWalking = animator.GetBool("isWalking");
+        bool isBackwards = animator.GetBool("isBackwards");
         bool forwardPressed = Input.GetKey("w");
         bool walkPressed = Input.GetKey("left shift");
         bool jumpPressed = Input.GetKey("space");
         bool inAir = animator.GetBool("inAir");
+        bool backwardsPressed = Input.GetKey("s");
 
         if(!isRunning && forwardPressed) // run state on w key
         {
@@ -42,6 +44,14 @@ public class AnimationStateController : MonoBehaviour
         if(!jumpPressed && inAir) // jump if inAir is true
         {
             animator.SetBool("inAir", false);
+        }
+        if(!isBackwards && backwardsPressed) // run state on s key
+        {
+            animator.SetBool("isBackwards", true);
+        }
+        if(isBackwards && !backwardsPressed) // 
+        {
+            animator.SetBool("isBackwards", false);
         }
     }
 }
